@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотограф | Сайт-визитка</title>
+    <!-- Подключаем внешний файл со стилями -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Google Fonts для красивого шрифта -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Шапка сайта (навигация) -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">Александр Волков</div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Главный экран (Hero Section) -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Александр Волков</h1>
+                    <p class="hero-subtitle">Профессиональный фотограф</p>
+                    <p class="hero-description">Свадебная, семейная и портретная съемка в Москве и области. Помогу сохранить самые теплые моменты.</p>
+                    <a href="#contact" class="btn btn-primary">Обсудить съемку</a>
+                </div>
+                <div class="hero-image">
+                    <!-- Нейтральное изображение: фотоаппарат -->
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Профессиональный фотоаппарат">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Обо мне" -->
+        <section id="about" class="about">
+            <div class="container about-container">
+                <div class="about-image">
+                     <!-- Нейтральное изображение: процесс съемки -->
+                    <img src="https://images.unsplash.com/photo-1552168324-d612d77725e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Фотограф за работой">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">Обо мне</h2>
+                    <p class="about-text">Привет! Меня зовут Александр, и я фотограф с 7-летним опытом. Для меня фотография — это не просто нажать на кнопку, это возможность остановить время и передать эмоции.</p>
+                    <p class="about-text">Я работаю в естественном, живом стиле. Не люблю постановочные кадры, мне важна ваша искренность. Моя задача — сделать так, чтобы вы чувствовали себя комфортно перед камерой, и тогда кадры получатся волшебными сами собой.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Лет опыта</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Довольных пар</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Семейных историй</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Портфолио" -->
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">Примеры работ</h2>
+                <p class="section-subtitle">Несколько кадров из моей коллекции</p>
+                <div class="portfolio-grid">
+                    <!-- Нейтральные изображения для портфолио: город, природа, архитектура, детали -->
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Городской пейзаж"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Природа и лес"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Горный пейзаж"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=974&q=80" alt="Туманный лес"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Закат в горах"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1244&q=80" alt="Городской небоскреб"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Контакты" -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Давайте знакомиться</h2>
+                <p class="section-subtitle">Я всегда открыт к новым проектам и идеям</p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p>Позвоните или напишите мне в мессенджеры, чтобы забронировать дату или просто задать вопрос.</p>
+                        <ul class="contact-list">
+                            <li><span class="contact-label">Телефон:</span> <a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                            <li><span class="contact-label">Email:</span> <a href="mailto:hello@volkovphoto.ru">hello@volkovphoto.ru</a></li>
+                            <li><span class="contact-label">Соцсети:</span> 
+                                <a href="#" target="_blank">Instagram</a> | 
+                                <a href="#" target="_blank">VK</a> | 
+                                <a href="#" target="_blank">Telegram</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Простая форма обратной связи -->
+                    <form class="contact-form">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="email" placeholder="Ваш Email" required>
+                        <textarea placeholder="Ваше сообщение" rows="4" required></textarea>
+                        <button type="submit" class="btn btn-secondary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Александр Волков. Фотограф в Москве.</p>
+            <p>Сайт-визитка. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Елена Соколова | Фотограф</title>
+    <!-- Подключаем внешний файл со стилями -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Google Fonts для красивого шрифта -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Шапка сайта (навигация) -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">Елена Соколова</div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Главный экран (Hero Section) -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Елена Соколова</h1>
+                    <p class="hero-subtitle">Фотограф, который видит вашу историю</p>
+                    <p class="hero-description">Свадебная, семейная и портретная съемка в Москве и области. Помогу сохранить самые теплые моменты.</p>
+                    <a href="#contact" class="btn btn-primary">Обсудить съемку</a>
+                </div>
+                <div class="hero-image">
+                    <!-- Здесь будет ваше фото или абстрактное изображение. Вставьте свою ссылку вместо placeholder. -->
+                    <img src="https://images.unsplash.com/photo-1554048612-b76c7da1f62c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Елена Соколова с фотоаппаратом">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Обо мне" -->
+        <section id="about" class="about">
+            <div class="container about-container">
+                <div class="about-image">
+                     <!-- Заглушка для фото. Вставьте свое фото -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Портрет Елены">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">Обо мне</h2>
+                    <p class="about-text">Привет! Меня зовут Лена, и я фотограф с 7-летним опытом. Для меня фотография — это не просто нажать на кнопку, это возможность остановить время и передать эмоции.</p>
+                    <p class="about-text">Я работаю в естественном, живом стиле. Не люблю постановочные кадры, мне важна ваша искренность. Моя задача — сделать так, чтобы вы чувствовали себя комфортно перед камерой, и тогда кадры получатся волшебными сами собой.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Лет опыта</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Довольных пар</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Семейных историй</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Портфолио" -->
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">Примеры работ</h2>
+                <p class="section-subtitle">Несколько кадров из моей коллекции</p>
+                <div class="portfolio-grid">
+                    <!-- Здесь картинки-заглушки. Замените на свои работы -->
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Свадебная фотосессия"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80" alt="Портрет девушки"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80" alt="Семейная съемка"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80" alt="Love story"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=688&q=80" alt="Портрет мужчины"></div>
+                    <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Детская съемка"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Контакты" -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Давайте знакомиться</h2>
+                <p class="section-subtitle">Я всегда открыта к новым проектам и идеям</p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p>Позвоните или напишите мне в мессенджеры, чтобы забронировать дату или просто задать вопрос.</p>
+                        <ul class="contact-list">
+                            <li><span class="contact-label">Телефон:</span> <a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                            <li><span class="contact-label">Email:</span> <a href="mailto:hello@elenasokolova.ru">hello@elenasokolova.ru</a></li>
+                            <li><span class="contact-label">Соцсети:</span> 
+                                <a href="#" target="_blank">Instagram</a> | 
+                                <a href="#" target="_blank">VK</a> | 
+                                <a href="#" target="_blank">Telegram</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Простая форма обратной связи -->
+                    <form class="contact-form">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="email" placeholder="Ваш Email" required>
+                        <textarea placeholder="Ваше сообщение" rows="4" required></textarea>
+                        <button type="submit" class="btn btn-secondary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Елена Соколова. Фотограф в Москве.</p>
+            <p>Сайт-визитка. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
