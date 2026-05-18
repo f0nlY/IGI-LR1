@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Продукты с доставкой{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: sans-serif; background: #f4f4f4; color: #333; }
+        .container { max-width: 1100px; margin: auto; padding: 20px; }
+
+        /* NAV */
+        nav { background: #2c3e50; color: white; padding: 12px 0; }
+        nav .nav-inner { max-width: 1100px; margin: auto; padding: 0 20px;
+                         display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.95em; }
+        nav a:hover { text-decoration: underline; }
+        .nav-brand { font-size: 1.2em; font-weight: bold; margin-left: 0 !important; }
+
+        /* AUTH BAR */
+        .auth-bar { background: #34495e; color: #ccc; padding: 6px 0; font-size: 0.85em; }
+        .auth-bar .nav-inner { justify-content: flex-end; }
+
+        /* MESSAGES */
+        .messages { list-style: none; padding: 10px 20px; }
+        .messages li { padding: 10px; margin-bottom: 8px; border-radius: 5px; }
+        .messages .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .messages .error   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .messages .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+
+        /* CARDS */
+        .card { background: white; border-radius: 8px; padding: 20px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.08); margin-bottom: 20px; }
+
+        /* BUTTONS */
+        .btn { display: inline-block; padding: 8px 18px; border-radius: 5px;
+               border: none; cursor: pointer; text-decoration: none; font-size: 0.95em; }
+        .btn-green  { background: #27ae60; color: white; }
+        .btn-blue   { background: #2980b9; color: white; }
+        .btn-red    { background: #c0392b; color: white; }
+        .btn-gray   { background: #95a5a6; color: white; }
+        .btn:hover  { opacity: 0.85; }
+
+        /* FOOTER */
+        footer { background: #2c3e50; color: #aaa; text-align: center;
+                 padding: 15px; margin-top: 40px; font-size: 0.85em; }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- AUTH BAR -->
+<div class="auth-bar">
+    <div class="nav-inner">
+        {% if user.is_authenticated %}
+            Привет, <b>{{ user.username }}</b>
+            {% if user.is_superuser %}(Администратор)
+            {% elif role == 'employee' %}(Сотрудник)
+            {% else %}(Покупатель){% endif %}
+            &nbsp;|&nbsp;
+            <a href="/cabinet/">Личный кабинет</a>
+            {% if user.is_superuser %}<a href="/admin/">Админка</a>{% endif %}
+            <a href="/logout/">Выйти</a>
+        {% else %}
+            Вы гость &nbsp;|&nbsp;
+            <a href="/login/">Войти</a>
+            <a href="/register/">Регистрация</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-brand">🛒 Продукты с доставкой</a>
+        <div>
+            <a href="/">Товары</a>
+            <!-- Ссылка на корзину — добавили сюда -->
+            {% if user.is_authenticated and role == 'buyer' %}
+                <a href="/cart/" style="color: #27ae60; font-weight: bold;">🛒 Корзина</a>
+            {% endif %}
+            
+            <a href="/news/">Новости</a>
+            <a href="/reviews/">Отзывы</a>
+            <a href="/glossary/">Словарь</a>
+            <a href="/vacancies/">Вакансии</a>
+            <a href="/promo/">Промокоды</a>
+            <a href="/contacts/">Контакты</a>
+            <a href="/about/">О нас</a>
+            {% if role == 'admin' or role == 'employee' %}
+                <a href="/statistics/">📊 Статистика</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<!-- MESSAGES -->
+{% if messages %}
+    <ul class="messages container">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- CONTENT -->
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Статистика{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stats-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+    .stat-card { background: white; padding: 20px; border-radius: 8px; text-align: center;
+                 box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
+    .stat-card .num { font-size: 2em; font-weight: bold; color: #2980b9; }
+    .stat-card .label { color: #888; font-size: 0.9em; }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>📊 Статистика магазина</h2>
+<br>
+
+<!-- КАРТОЧКИ -->
+<div class="stats-cards">
+    <div class="stat-card">
+        <div class="num">{{ total_products }}</div>
+        <div class="label">Товаров</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">{{ total_orders }}</div>
+        <div class="label">Заказов</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">{{ total_clients }}</div>
+        <div class="label">Клиентов</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">{{ avg_price }}</div>
+        <div class="label">Средняя цена (BYN)</div>
+    </div>
+</div>
+
+<!-- ДИАГРАММА через matplotlib — сервер рендерит PNG -->
+<div class="card">
+    <h3>Распределение товаров по категориям</h3>
+    <br>
+    <img src="/statistics/chart/"
+         alt="График по категориям"
+         style="width:100%; max-width:900px; border-radius:8px;">
+</div>
+
+<!-- ПРОДАЖИ ПО КАТЕГОРИЯМ -->
+<div class="card">
+    <h3>Продажи по категориям</h3>
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Категория</th>
+                <th style="padding:10px; text-align:right; border-bottom:2px solid #ddd;">Продано (шт)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in sales_by_cat %}
+            <tr>
+                <td style="padding:10px; border-bottom:1px solid #eee;">{{ item.name }}</td>
+                <td style="padding:10px; text-align:right; border-bottom:1px solid #eee;">
+                    {{ item.total|default:"0" }}
+                </td>
+            </tr>
+            {% empty %}
+                <tr><td colspan="2" style="padding:10px; color:#888;">Данных пока нет.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a href="/" class="btn btn-gray">← На главную</a>
+{% endblock %}

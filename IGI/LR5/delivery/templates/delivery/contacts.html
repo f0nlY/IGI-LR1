@@ -1,0 +1,46 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+<h2>📞 Контакты</h2>
+<br>
+
+<div class="card">
+    <h3>Наши сотрудники</h3>
+    <br>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:15px;">
+        {% for emp in employees %}
+        <div style="border:1px solid #eee; padding:15px; border-radius:8px; text-align:center;">
+            {% if emp.photo %}
+                <img src="{{ emp.photo.url }}" alt="{{ emp.full_name }}"
+                     style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:10px;">
+            {% else %}
+                <div style="width:80px; height:80px; border-radius:50%; background:#ddd;
+                            display:flex; align-items:center; justify-content:center;
+                            margin:0 auto 10px; font-size:2em; color:#aaa;">👤</div>
+            {% endif %}
+            <h4>{{ emp.full_name }}</h4>
+            <p style="color:#888; font-size:0.85em;">{{ emp.position }}</p>
+            <p>📞 {{ emp.phone }}</p>
+            {% if emp.email %}<p>✉️ {{ emp.email }}</p>{% endif %}
+        </div>
+        {% empty %}
+            <p style="color:#888;">Данных о сотрудниках пока нет.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card">
+    <h3>Точки самовывоза</h3>
+    <br>
+    {% for point in points %}
+    <div style="padding:12px; border-left:4px solid #2980b9; margin-bottom:12px; background:#f8f9fa;">
+        <h4>{{ point.name }}</h4>
+        <p>📍 {{ point.address }}</p>
+        <p>📞 {{ point.phone }}</p>
+        {% if point.working_hours %}<p>🕐 {{ point.working_hours }}</p>{% endif %}
+    </div>
+    {% empty %}
+        <p style="color:#888;">Данных о точках самовывоза пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'delivery/base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ product.name }}</h2>
+    <p style="color:#888;">Категория: {{ product.category.name }}</p>
+    <hr style="margin: 15px 0;">
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}"
+             style="max-width:300px; border-radius:8px; margin-bottom:15px;">
+    {% endif %}
+    <p><b>Цена:</b> <span style="color:#27ae60; font-size:1.2em;">{{ product.price }} BYN / {{ product.unit }}</span></p>
+    <p><b>В долларах:</b> ≈ ${{ product.price_usd }}</p>
+    <br>
+    <a href="/" class="btn btn-gray">← Назад</a>
+
+<!-- КНОПКА КУПИТЬ ДЛЯ ПОКУПАТЕЛЯ -->
+    {% if role == 'buyer' %}
+    <div class="card" style="background: #e8f4fd; border: 1px dashed #2980b9; margin-top: 20px;">
+        <h3>🚀 Быстрый заказ</h3>
+        <p style="font-size: 0.9em; color: #555;">Хотите купить сразу? Введите промокод и нажмите заказать:</p>
+        <form action="{% url 'create_order' product.pk %}" method="POST" style="margin-top: 10px; display: flex; gap: 10px;">
+            {% csrf_token %}
+            <input type="text" name="promo_code" placeholder="Промокод" 
+                   style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; flex-grow: 1;">
+            <button type="submit" class="btn btn-green">Оформить заказ</button>
+        </form>
+        <p style="text-align: center; margin-top: 10px;">или</p>
+        <a href="{% url 'add_to_cart' product.pk %}" class="btn btn-blue" style="width: 100%; text-align: center;">🛒 Добавить в общую корзину</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

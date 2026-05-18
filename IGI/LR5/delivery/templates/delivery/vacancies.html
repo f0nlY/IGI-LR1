@@ -1,0 +1,16 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Вакансии{% endblock %}
+{% block content %}
+<h2>💼 Вакансии</h2>
+<br>
+{% for v in vacancies %}
+<div class="card">
+    <h3>{{ v.title }}</h3>
+    {% if v.salary %}<p style="color:#27ae60;"><b>Зарплата:</b> {{ v.salary }}</p>{% endif %}
+    <p style="margin-top:8px; line-height:1.6;">{{ v.description }}</p>
+    <p style="color:#888; font-size:0.8em; margin-top:8px;">Опубликовано: {{ v.pub_date|date:"d/m/Y" }}</p>
+</div>
+{% empty %}
+<div class="card"><p style="color:#888;">Вакансий пока нет.</p></div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+
+<h2>👤 Личный кабинет</h2>
+<br>
+
+{% if role == 'buyer' %}
+    <div class="card">
+        <h3>Мои данные</h3>
+        {% if client %}
+            <p><b>ФИО:</b> {{ client.full_name }}</p>
+            <p><b>Телефон:</b> {{ client.phone }}</p>
+            <p><b>Email:</b> {{ client.email }}</p>
+            <p><b>Город:</b> {{ client.city }}</p>
+        {% else %}
+            <p style="color:#888;">Данные профиля не заполнены.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h3>Мои заказы</h3>
+        {% if orders %}
+            {% for order in orders %}
+            <div style="border:1px solid #eee; padding:12px; border-radius:6px; margin-bottom:12px;">
+                <p><b>Заказ №{{ order.id }}</b> от {{ order.order_date|date:"d/m/Y" }}</p>
+                <p>Доставка: {{ order.delivery_date|date:"d/m/Y" }}</p>
+                <p>Статус:
+                    {% if order.is_delivered %}
+                        <span style="color:green;">✅ Доставлен</span>
+                    {% else %}
+                        <span style="color:orange;">⏳ В пути</span>
+                    {% endif %}
+                </p>
+                <p><b>Состав:</b></p>
+                <ul style="margin-left:20px;">
+                    {% for item in order.orderitem_set.all %}
+                        <li>{{ item.product.name }} — {{ item.quantity }} {{ item.product.unit }}
+                            ({{ item.product.price }} BYN × {{ item.quantity }})</li>
+                    {% endfor %}
+                </ul>
+                <p><b>Итого: {{ order.total_price }} BYN</b></p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="color:#888;">У вас пока нет заказов.</p>
+        {% endif %}
+    </div>
+
+{% elif role == 'employee' %}
+    <div class="card">
+        <h3>Все заказы (панель сотрудника)</h3>
+        {% if orders %}
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="background:#f0f0f0;">
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">№</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Клиент</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Дата заказа</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Дата доставки</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ order.id }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ order.client.full_name }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ order.order_date|date:"d/m/Y H:i" }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ order.delivery_date|date:"d/m/Y" }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">
+                            {% if order.is_delivered %}
+                                <span style="color:green;">✅ Доставлен</span>
+                            {% else %}
+                                <span style="color:orange;">⏳ В пути</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="color:#888;">Заказов пока нет.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h3>Клиенты</h3>
+        {% if clients %}
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="background:#f0f0f0;">
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">ФИО</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Телефон</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Email</th>
+                        <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Город</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in clients %}
+                    <tr>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ c.full_name }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ c.phone }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ c.email }}</td>
+                        <td style="padding:10px; border-bottom:1px solid #eee;">{{ c.city }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="color:#888;">Клиентов пока нет.</p>
+        {% endif %}
+    </div>
+{% endif %}
+
+<a href="/" class="btn btn-gray">← На главную</a>
+{% endblock %}

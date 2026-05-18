@@ -1,0 +1,24 @@
+{% extends 'delivery/base.html' %}
+{% block title %}О компании{% endblock %}
+{% block content %}
+<h2>🏢 О компании</h2>
+<br>
+{% if info %}
+<div class="card">
+    <h3>{{ info.name }}</h3>
+    {% if info.founded_year %}
+        <p style="color:#888;">Год основания: {{ info.founded_year }}</p>
+    {% endif %}
+    <div style="line-height:1.7; margin-top:15px;">{{ info.description|linebreaks }}</div>
+    {% if info.address or info.phone or info.email %}
+    <hr style="margin:20px 0;">
+    <h4>Реквизиты</h4>
+    {% if info.address %}<p>📍 {{ info.address }}</p>{% endif %}
+    {% if info.phone %}<p>📞 {{ info.phone }}</p>{% endif %}
+    {% if info.email %}<p>✉️ {{ info.email }}</p>{% endif %}
+    {% endif %}
+</div>
+{% else %}
+<div class="card"><p style="color:#888;">Информация о компании пока не добавлена.</p></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Словарь терминов{% endblock %}
+{% block content %}
+<h2>📖 Словарь терминов и FAQ</h2>
+<br>
+{% for term in terms %}
+<div class="card">
+    <h3 style="color:#2980b9;">❓ {{ term.question }}</h3>
+    <p style="color:#888; font-size:0.8em; margin-bottom:8px;">
+        Добавлено: {{ term.date_added|date:"d/m/Y" }}
+    </p>
+    <p style="line-height:1.6;">{{ term.answer }}</p>
+</div>
+{% empty %}
+<div class="card"><p style="color:#888;">Записей пока нет.</p></div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Отзывы{% endblock %}
+{% block content %}
+<h2>⭐ Отзывы</h2>
+<br>
+
+{% if user.is_authenticated and form %}
+<div class="card">
+    <h3>Оставить отзыв</h3>
+    <form method="POST" style="margin-top:10px;">
+        {% csrf_token %}
+        {% for field in form %}
+            <div style="margin-bottom:12px;">
+                <label style="display:block; font-weight:bold; margin-bottom:4px;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<p style="color:red; font-size:0.85em;">{{ field.errors.0 }}</p>{% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-green">Отправить отзыв</button>
+    </form>
+</div>
+{% elif not user.is_authenticated %}
+<div class="card" style="background:#fff3cd;">
+    <p>Чтобы оставить отзыв, <a href="/login/">войдите в аккаунт</a> или
+       <a href="/register/">зарегистрируйтесь</a>.</p>
+</div>
+{% endif %}
+
+{% for review in reviews %}
+<div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <b>{{ review.name }}</b>
+        <span style="color:#f39c12; font-size:1.2em;">
+            {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+            {% endfor %}
+        </span>
+    </div>
+    <p style="color:#888; font-size:0.8em;">{{ review.date|date:"d/m/Y" }}</p>
+    <p style="margin-top:8px;">{{ review.text }}</p>
+</div>
+{% empty %}
+<div class="card"><p style="color:#888;">Отзывов пока нет. Будьте первым!</p></div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Промокоды и купоны{% endblock %}
+{% block content %}
+<h2>🎫 Промокоды и купоны</h2>
+<br>
+
+<div class="card">
+    <h3 style="color:#27ae60;">✅ Активные промокоды</h3>
+    <br>
+    {% for promo in active_promos %}
+    <div style="display:flex; justify-content:space-between; align-items:center;
+                padding:12px; border:2px dashed #27ae60; border-radius:8px; margin-bottom:10px;">
+        <div>
+            <span style="font-size:1.3em; font-weight:bold; letter-spacing:2px; color:#2c3e50;">
+                {{ promo.code }}
+            </span>
+            {% if promo.valid_until %}
+                <span style="color:#888; font-size:0.85em; margin-left:10px;">
+                    до {{ promo.valid_until|date:"d/m/Y" }}
+                </span>
+            {% endif %}
+        </div>
+        <span style="font-size:1.4em; font-weight:bold; color:#27ae60;">-{{ promo.discount_percent }}%</span>
+    </div>
+    {% empty %}
+        <p style="color:#888;">Активных промокодов нет.</p>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <h3 style="color:#95a5a6;">📦 Архив промокодов</h3>
+    <br>
+    {% for promo in archive_promos %}
+    <div style="display:flex; justify-content:space-between; align-items:center;
+                padding:10px; background:#f8f8f8; border-radius:6px; margin-bottom:8px; opacity:0.6;">
+        <span style="font-size:1.1em; text-decoration:line-through; color:#888;">{{ promo.code }}</span>
+        <span style="color:#888;">-{{ promo.discount_percent }}%</span>
+    </div>
+    {% empty %}
+        <p style="color:#888;">Архив пуст.</p>
+    {% endfor %}
+</div>
+{% endblock %}

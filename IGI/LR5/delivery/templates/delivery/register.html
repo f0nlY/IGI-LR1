@@ -1,0 +1,29 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+<div class="card" style="max-width:500px; margin:auto;">
+    <h2 style="text-align:center;">Регистрация (18+)</h2>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div style="margin-bottom:15px;">
+                <label style="display:block; font-weight:bold; margin-bottom:4px;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p style="font-size:0.8em; color:#888;">{{ field.help_text }}</p>
+                {% endif %}
+                {% if field.errors %}
+                    <p style="color:red; font-size:0.85em;">{{ field.errors.0 }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-green" style="width:100%; padding:12px;">
+            Зарегистрироваться
+        </button>
+    </form>
+    <p style="text-align:center; margin-top:15px;">
+        <a href="/login/">Уже есть аккаунт? Войти</a>
+    </p>
+</div>
+{% endblock %}

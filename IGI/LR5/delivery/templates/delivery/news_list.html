@@ -1,0 +1,22 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Новости{% endblock %}
+{% block content %}
+<h2>📰 Новости</h2>
+<br>
+{% for article in news %}
+<div class="card">
+    {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}"
+             style="width:100%; max-height:200px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+    {% endif %}
+    <h3>{{ article.title }}</h3>
+    <p style="color:#888; font-size:0.85em;">{{ article.pub_date|date:"d/m/Y H:i" }}</p>
+    <p>{{ article.summary|default:article.content|truncatewords:20 }}</p>
+    <a href="/news/{{ article.pk }}/" class="btn btn-blue" style="margin-top:10px; display:inline-block;">
+        Читать далее →
+    </a>
+</div>
+{% empty %}
+<div class="card"><p style="color:#888;">Новостей пока нет.</p></div>
+{% endfor %}
+{% endblock %}

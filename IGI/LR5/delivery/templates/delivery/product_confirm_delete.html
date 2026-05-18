@@ -1,0 +1,14 @@
+{% extends 'delivery/base.html' %}
+{% block title %}Удалить {{ product.name }}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:500px; margin:auto; text-align:center;">
+    <h2>⚠️ Удалить товар?</h2>
+    <p style="margin: 20px 0;">Вы уверены что хотите удалить <b>«{{ product.name }}»</b>?<br>
+    Это действие нельзя отменить.</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-red">Да, удалить</button>
+        <a href="/" class="btn btn-gray">Отмена</a>
+    </form>
+</div>
+{% endblock %}
